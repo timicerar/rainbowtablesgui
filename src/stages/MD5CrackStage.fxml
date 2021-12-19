@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MD5CrackController">
+   <children>
+      <Pane prefHeight="365.0" prefWidth="107.0" style="-fx-background-color: #e6e6e6;">
+         <children>
+            <Button fx:id="createTableModeButton" layoutX="11.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleCreateTableModeButton" prefHeight="25.0" prefWidth="84.0" text="Create" />
+            <Button fx:id="crackModeButton" layoutX="12.0" layoutY="69.0" mnemonicParsing="false" onAction="#handleCrackModeButton" prefHeight="25.0" prefWidth="84.0" text="Crack" textFill="#0074d9" />
+            <Separator layoutX="107.0" orientation="VERTICAL" prefHeight="365.0" prefWidth="0.0" />
+            <Label layoutX="21.0" layoutY="14.0" text="MD5 Mode">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="12.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="25.0" prefWidth="84.0" text="Back" />
+         </children>
+      </Pane>
+      <TextField fx:id="minPasswordTextField" layoutX="117.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="117.0" layoutY="118.0" prefHeight="17.0" prefWidth="163.0" text="Minimum password length">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="maxPasswordTextField" layoutX="117.0" layoutY="185.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="117.0" layoutY="168.0" prefHeight="17.0" prefWidth="163.0" text="Maximum password length">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="chainsPerTableTextField" layoutX="117.0" layoutY="236.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="117.0" layoutY="219.0" prefHeight="17.0" prefWidth="163.0" text="Chains per table">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="chainLengthTextField" layoutX="117.0" layoutY="287.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="117.0" layoutY="270.0" prefHeight="17.0" prefWidth="163.0" text="Chain length">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="readTableButton" layoutX="117.0" layoutY="321.0" mnemonicParsing="false" onAction="#handleReadTableButton" prefHeight="25.0" prefWidth="200.0" text="Read Table" />
+      <Label layoutX="117.0" layoutY="68.0" prefHeight="17.0" prefWidth="163.0" text="Charset">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <ChoiceBox fx:id="charsetChoice" layoutX="117.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" />
+      <Button fx:id="selectFileButton" layoutX="117.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleSelectFileButton" text="Select a file" />
+      <Label fx:id="selectedFileLabel" layoutX="199.0" layoutY="39.0" prefHeight="17.0" prefWidth="332.0" text="No file selected" />
+      <Label layoutX="117.0" layoutY="14.0" text="Select rainbow table">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="passwordTextField" layoutX="331.0" layoutY="85.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="331.0" layoutY="68.0" prefHeight="17.0" prefWidth="163.0" text="Password (to find)">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="hashButton" layoutX="331.0" layoutY="119.0" mnemonicParsing="false" onAction="#handleHashButton" prefHeight="25.0" prefWidth="200.0" text="Hash MD5" />
+      <TextField fx:id="generateHashTextField" editable="false" layoutX="331.0" layoutY="152.0" prefHeight="25.0" prefWidth="200.0" promptText="Output" />
+      <TextField fx:id="crackHashTextField" layoutX="331.0" layoutY="202.0" prefHeight="25.0" prefWidth="200.0" />
+      <Label layoutX="331.0" layoutY="185.0" prefHeight="17.0" prefWidth="163.0" text="Enter MD5 Hash to crack">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="crackHashButton" layoutX="331.0" layoutY="236.0" mnemonicParsing="false" onAction="#handleCrackHashButton" prefHeight="25.0" prefWidth="200.0" text="Crack Hash" />
+      <Label fx:id="isCrackedLabel" alignment="TOP_LEFT" layoutX="331.0" layoutY="269.0" prefHeight="75.0" prefWidth="200.0" />
+   </children>
+</Pane>

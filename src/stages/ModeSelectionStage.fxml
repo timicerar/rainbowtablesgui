@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="283.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ModeSelectionController">
+   <children>
+      <Label layoutX="113.0" layoutY="101.0" text="Rainbow Tables Implementation">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="md5ModeButton" layoutX="127.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleMD5ModeButton" prefHeight="25.0" prefWidth="100.0" text="MD5" />
+      <Button fx:id="sha1ModeButton" layoutX="235.0" layoutY="130.0" mnemonicParsing="false" onAction="#handleSHA1ModeButton" prefHeight="25.0" prefWidth="100.0" text="SHA1" />
+   </children>
+</Pane>
