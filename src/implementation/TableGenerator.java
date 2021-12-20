@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
 import java.util.Random;
 
 public class TableGenerator {
@@ -29,6 +28,8 @@ public class TableGenerator {
     private final Reducer reducer;
     private final MessageDigest messageDigest;
 
+    private final MeasureRainbowTable measureRainbowTable;
+
     public TableGenerator(final String algorithm, final String charsetType, final int minPasswordLength, final int maxPasswordLength, final int chainsPerTable, final int chainLength) throws NoSuchAlgorithmException {
         this.algorithm = algorithm;
         this.charset = CharsetUtils.getCharsetByType(charsetType);
@@ -40,10 +41,14 @@ public class TableGenerator {
         this.random = new Random(System.currentTimeMillis());
         this.reducer = new Reducer(charsetType, minPasswordLength, maxPasswordLength);
         this.messageDigest = CommonUtils.getMessageDigest(algorithm);
+
+        this.measureRainbowTable = new MeasureRainbowTable(algorithm, charsetType, this.charset, minPasswordLength, maxPasswordLength, chainsPerTable, chainLength);
     }
 
     public String generateRainbowTable(String savePath, ProgressBar progressBar) throws IOException {
         // Generates chains for the rainbow table, and saves the starting and endpoints in a file.
+        this.measureRainbowTable.setStartTime();
+
         File file = new File(savePath + "\\" + this.algorithm.replace("-", "") + "-RainbowTable-" + this.charset.length() + "-" + this.minPasswordLength + "-" + this.maxPasswordLength + "-" + this.chainsPerTable + "-" + this.chainLength + ".tbl");
         BufferedOutputStream outputStream = FileUtils.getBufferedOutputStream(file);
         int keyspaceId = 0;
@@ -72,6 +77,10 @@ public class TableGenerator {
         outputStream.close();
 
         progressBar.setProgress(1.0);
+
+        this.measureRainbowTable.setEndTime();
+        this.measureRainbowTable.setElapsedTimeInSeconds();
+        this.measureRainbowTable.setRainbowTableSizeInMB(file);
 
         return this.tableGenerationDone(file);
     }
@@ -102,5 +111,9 @@ public class TableGenerator {
 
     private String tableGenerationDone(final File file) {
         return "Rainbow Table " + file.getName() + " was successfully generated.";
+    }
+
+    public MeasureRainbowTable getMeasureRainbowTable() {
+        return measureRainbowTable;
     }
 }

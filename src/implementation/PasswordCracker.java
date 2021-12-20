@@ -50,7 +50,7 @@ public class PasswordCracker {
 
     private HashTable searchEndpoints(byte[] hashBytes, HashTable hashTable) {
         // Loops through known password lengths, and tries to reduce the hash with different reduction function in order to find matching endpoints from the rainbow table.
-        HashTable foundEndpoints = new HashTable(hashTable.size() / 11, this.minPasswordLength, this.maxPasswordLength);
+        HashTable foundEndpoints = new HashTable(hashTable.size() / 11);
 
         byte[] reducedEndpoint = null;
 

@@ -10,11 +10,11 @@ public class HashTable implements Iterable<Bytes> {
     private final HashFunction hashFunction;
     private int size;
 
-    public HashTable(final int size, final int minPasswordLength, final int maxPasswordLength) {
+    public HashTable(final int size) {
         // Calculate the size for the table.
         int prime = CommonUtils.calculatePrime(size);
         this.bytesTable = new Bytes[prime];
-        this.hashFunction = new HashFunction(prime, minPasswordLength, maxPasswordLength);
+        this.hashFunction = new HashFunction(prime);
     }
 
     public int size() {

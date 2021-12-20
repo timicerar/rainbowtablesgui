@@ -1,5 +1,6 @@
 package controllers;
 
+import implementation.MeasureRainbowTable;
 import implementation.TableGenerator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 import utils.CharsetUtils;
 import utils.ConsoleColorsUtils;
+import utils.FileUtils;
 import validators.NumberValidator;
 import validators.StringValidator;
 
@@ -142,10 +144,10 @@ public class SHA1TableGeneratorController {
                 try {
                     this.createTableButton.setDisable(true);
                     this.backButton.setDisable(true);
+                    this.saveMeasurementsButton.setDisable(true);
                     this.crackModeButton.setDisable(true);
 
                     String info = this.tableGenerator.generateRainbowTable(selectedDirectory.getAbsolutePath(), this.tableGenerationProgressBar);
-                    System.out.println(info);
 
                     this.createTableButton.setDisable(false);
                     this.backButton.setDisable(false);
@@ -155,7 +157,7 @@ public class SHA1TableGeneratorController {
 
                     this.tableGenerationProgressBar.setProgress(0.0);
 
-                    Platform.runLater(() -> DialogController.SHOW_ALERT("Rainbow table was successfully generated.", Alert.AlertType.INFORMATION));
+                    Platform.runLater(() -> DialogController.SHOW_ALERT(info, Alert.AlertType.INFORMATION));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -167,6 +169,14 @@ public class SHA1TableGeneratorController {
 
     @FXML
     void handleSaveMeasurementsButton(ActionEvent event) {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File selectedDirectory = directoryChooser.showDialog(((Node) event.getTarget()).getScene().getWindow());
 
+        if (selectedDirectory == null) {
+            return;
+        }
+
+        MeasureRainbowTable measureRainbowTable = this.tableGenerator.getMeasureRainbowTable();
+        FileUtils.saveMeasurements(selectedDirectory.getAbsolutePath(), measureRainbowTable);
     }
 }
